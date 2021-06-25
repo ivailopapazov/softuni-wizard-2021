@@ -16,10 +16,13 @@ var state = {
         speed: 3,
         width: 50,
         height: 50,
+        score: 500,
     },
     fireballStats: {
         width: 40,
         height: 40,
         speed: 10,
+        nextFireballCreation: 0,
+        attackSpeed: 400,
     }
 };

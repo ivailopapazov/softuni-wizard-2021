@@ -42,21 +42,34 @@
 
             if (state.keys.Space) {
                 wizardElement.style.backgroundImage = "url('/images/wizard-fire.png')";
-                game.createFireball();
+                if (state.fireballStats.nextFireballCreation < timestamp) {
+                    game.createFireball();
+                    state.fireballStats.nextFireballCreation = timestamp + state.fireballStats.attackSpeed;
+                }
             } else {
                 wizardElement.style.backgroundImage = "url('/images/wizard.png')";
             }
 
             // Move fireballs
             Array.from(document.getElementsByClassName('fireball'))
-                .forEach(x => {
-                    let currentPosition = parseInt(x.style.left);
+                .forEach(fireball => {
+                    let currentPosition = parseInt(fireball.style.left);
 
                     if (currentPosition + state.fireballStats.width < game.playScreen.offsetWidth) {
-                        x.style.left = currentPosition + state.fireballStats.speed + 'px';
+                        fireball.style.left = currentPosition + state.fireballStats.speed + 'px';
                     } else {
-                        x.remove();
+                        fireball.remove();
                     }
+
+                    Array.from(document.getElementsByClassName('bug'))
+                        .forEach(bug => {
+                            if (hasCollision(fireball, bug)) {
+                                bug.remove();
+                                fireball.remove();
+                                state.score += state.bugStats.score;
+                            }
+                        });
+
                 });
 
             // Move bugs
@@ -69,7 +82,7 @@
                     } else {
                         x.remove();
                     }
-                    
+
                     if (hasCollision(wizardElement, x)) {
                         state.gameOver = true;
                     }
@@ -118,7 +131,7 @@
                 wizard.x -= wizard.speed;
             }
 
-            if (state.keys.KeyD && wizard.x + wizard.width < game.playScreen.offsetWidth ) {
+            if (state.keys.KeyD && wizard.x + wizard.width < game.playScreen.offsetWidth) {
                 wizard.x += wizard.speed;
             }
         }
@@ -131,6 +144,7 @@
         }
 
         function onKeyDown(e) {
+            e.preventDefault();
             state.keys[e.code] = true;
 
         }
