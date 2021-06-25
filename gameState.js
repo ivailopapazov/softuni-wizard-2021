@@ -9,6 +9,10 @@ function gameStateFactory() {
             speed: 7,
         },
         keys: {},
+        bugStats: {
+            width: 50,
+            height: 50,
+        }
     };
     
     return function() {
