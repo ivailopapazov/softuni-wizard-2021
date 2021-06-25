@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Softuni Wizard</title>
 </head>
+
 <body>
     <div class="game-view">
         <div class="start-screen">Start Game</div>
@@ -36,23 +38,8 @@
         function gameLoop() {
             let { wizard } = state;
             let { wizardElement } = game;
-            
-            // User input
-            if (state.keys.KeyW) {
-                wizard.y -= wizard.speed; 
-            }
 
-            if (state.keys.KeyS) {
-                wizard.y += wizard.speed;
-            }
-
-            if (state.keys.KeyA) {
-                wizard.x -= wizard.speed; 
-            }
-
-            if (state.keys.KeyD) {
-                wizard.x += wizard.speed;
-            }
+            modifyWizardPosition(state, game)
 
             // Render
             wizardElement.style.top = wizard.y + 'px';
@@ -62,6 +49,26 @@
                 window.requestAnimationFrame(gameLoop)
             } else {
                 alert('Game Over')
+            }
+        }
+
+        function modifyWizardPosition(state, game) {
+            let wizard = state.wizard;
+
+            if (state.keys.KeyW && wizard.y > 0) {
+                wizard.y -= wizard.speed;
+            }
+
+            if (state.keys.KeyS && wizard.y + wizard.height < game.playScreen.offsetHeight) {
+                wizard.y += wizard.speed;
+            }
+
+            if (state.keys.KeyA && wizard.x > 0) {
+                wizard.x -= wizard.speed;
+            }
+
+            if (state.keys.KeyD && wizard.x + wizard.width < game.playScreen.offsetWidth ) {
+                wizard.x += wizard.speed;
             }
         }
 
@@ -75,4 +82,5 @@
         }
     </script>
 </body>
+
 </html>

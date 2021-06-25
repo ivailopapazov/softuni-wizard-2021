@@ -21,6 +21,11 @@ body {
     transform: translate(-50%);
 }
 
+.play-screen {
+    width: 100%;
+    height: 100%;
+}
+
 .wizard {
     position: absolute;
     background-image: url('/images/wizard.png');
