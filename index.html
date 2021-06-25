@@ -64,6 +64,9 @@
                 state.bugStats.nextBugCreation = timestamp + Math.random() * state.bugStats.maxCreationInterval;
             }
 
+            // Increase bug speed
+            state.bugStats.speed += 0.01;
+
             // Render
             wizardElement.style.top = wizard.y + 'px';
             wizardElement.style.left = wizard.x + 'px';
