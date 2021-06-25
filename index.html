@@ -13,9 +13,11 @@
         <div class="play-screen hidden"></div>
     </div>
 
-    <script src="init.js"></script>
+    <script src="gameState.js"></script>
+    <script src="gameFactory.js"></script>
     <script>
-        let state = {};
+        let getState = gameStateFactory();
+        let state = getState();
         let game = gameFactory();
 
         game.startScreen.addEventListener('click', gameStart);

@@ -1,21 +1,19 @@
 function gameFactory() {
-    let factory = {};
+    let getState = gameStateFactory();
+
+    let { wizard } = getState();
 
     let startScreen = document.querySelector('.start-screen');
     let playScreen = document.querySelector('.play-screen');
-    let wizardElement = createWizard(100, 200);
+    let wizardElement = createWizard(wizard.x, wizard.y);
 
     playScreen.appendChild(wizardElement);
 
-    Object.defineProperties(factory, {
-        startScreen: {
-            get: () => startScreen
-        },
-        playScreen: {
-            get: () => playScreen
-        },
-        wizardElement
-    });
+    let factory = {
+        startScreen,
+        playScreen,
+        wizardElement,
+    };
 
     return factory;
 }
