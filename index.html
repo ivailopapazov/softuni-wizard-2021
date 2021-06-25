@@ -42,9 +42,21 @@
                 wizard.y -= wizard.speed; 
             }
 
+            if (state.keys.KeyS) {
+                wizard.y += wizard.speed;
+            }
+
+            if (state.keys.KeyA) {
+                wizard.x -= wizard.speed; 
+            }
+
+            if (state.keys.KeyD) {
+                wizard.x += wizard.speed;
+            }
 
             // Render
             wizardElement.style.top = wizard.y + 'px';
+            wizardElement.style.left = wizard.x + 'px';
 
             if (!state.gameOver) {
                 window.requestAnimationFrame(gameLoop)
