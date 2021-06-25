@@ -1,0 +1,9 @@
+body {
+    margin: 0
+}
+
+.game-view {
+    background-color: skyblue;
+    width: 100vw;
+    height: 100vh;
+}
