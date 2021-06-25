@@ -15,10 +15,7 @@
 
     <script src="init.js"></script>
     <script>
-        // Current game state
         let state = {};
-
-        // Current game dom elements
         let game = gameFactory();
 
         game.startScreen.addEventListener('click', gameStart);
@@ -27,7 +24,6 @@
             game.startScreen.classList.add('hidden');
             game.playScreen.classList.remove('hidden');
         }
-
     </script>
 </body>
 </html>

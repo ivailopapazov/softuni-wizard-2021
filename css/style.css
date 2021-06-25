@@ -21,6 +21,14 @@ body {
     transform: translate(-50%);
 }
 
+.wizard {
+    position: absolute;
+    background-image: url('/images/wizard.png');
+    background-size: cover;
+    width: 82px;
+    height: 100px;
+}
+
 .hidden {
     display: none;
 }
