@@ -35,14 +35,18 @@
             window.requestAnimationFrame(gameLoop)
         }
 
-        function gameLoop() {
+        function gameLoop(timestamp) {
             let { wizard } = state;
             let { wizardElement } = game;
+
 
             modifyWizardPosition(state, game)
 
             // spawn bugs
-            game.createBug();
+            if (state.bugStats.nextBugCreation < timestamp) {
+                game.createBug();
+                state.bugStats.nextBugCreation = timestamp + Math.random() * state.bugStats.maxCreationInterval;
+            }
 
             // Render
             wizardElement.style.top = wizard.y + 'px';

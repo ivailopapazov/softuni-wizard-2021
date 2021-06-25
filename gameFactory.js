@@ -21,7 +21,7 @@ function gameFactory() {
             bugElement.style.height = bugStats.height + 'px';
 
             bugElement.style.left = playScreen.offsetWidth - bugStats.width + 'px';
-            bugElement.style.top = '100px';
+            bugElement.style.top = (playScreen.offsetHeight - bugStats.height) * Math.random() + 'px';
 
             playScreen.appendChild(bugElement);
         }
