@@ -42,19 +42,22 @@
 
             modifyWizardPosition(state, game)
 
+
             // Move bugs
             Array.from(document.getElementsByClassName('bug'))
                 .forEach(x => {
                     let currentPosition = parseInt(x.style.left);
+
+                    // TODO: check for collision
+                    if (hasCollision(wizardElement, x)) {
+                        state.gameOver = true;
+                    }
 
                     if (currentPosition > 0) {
                         x.style.left = currentPosition - state.bugStats.speed + 'px';
                     } else {
                         x.remove();
                     }
-                    
-
-                    // TODO: check for collision
                 });
 
             // spawn bugs
@@ -92,6 +95,13 @@
             if (state.keys.KeyD && wizard.x + wizard.width < game.playScreen.offsetWidth ) {
                 wizard.x += wizard.speed;
             }
+        }
+
+        function hasCollision(firstElement, secondElement) {
+            let first = firstElement.getBoundingClientRect();
+            let second = secondElement.getBoundingClientRect();
+
+            return !(first.top > second.bottom || first.bottom < second.top || first.right < second.left || first.left > second.right);
         }
 
         function onKeyDown(e) {
