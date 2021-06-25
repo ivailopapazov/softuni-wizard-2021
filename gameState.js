@@ -4,7 +4,9 @@ function gameStateFactory() {
         wizard: {
             x: 100,
             y: 200,
-        }
+            speed: 5,
+        },
+        keys: {},
     };
     
     return function() {
