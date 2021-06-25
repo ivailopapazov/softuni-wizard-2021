@@ -19,8 +19,6 @@
     <script src="gameState.js"></script>
     <script src="gameFactory.js"></script>
     <script>
-        let getState = gameStateFactory();
-        let state = getState();
         let game = gameFactory();
 
         game.startScreen.addEventListener('click', gameStart);
@@ -41,6 +39,13 @@
             let { wizardElement, scoreScreen } = game;
 
             modifyWizardPosition(state, game);
+
+            if (state.keys.Space) {
+                wizardElement.style.backgroundImage = "url('/images/wizard-fire.png')";
+                game.createFireball();
+            } else {
+                wizardElement.style.backgroundImage = "url('/images/wizard.png')";
+            }
 
             // Move bugs
             Array.from(document.getElementsByClassName('bug'))
@@ -79,8 +84,6 @@
             } else {
                 alert('Game Over' + state.score)
             }
-
-
         }
 
         function modifyWizardPosition(state, game) {
